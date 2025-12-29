@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .date-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h3>日期选择器</h3>
+    
+    <input type="date" 
+           id="datePicker" 
+           class="date-input"
+           value="2025-12-30">
+    
+    <div class="result" id="result"></div>
+
+    <script>
+        const datePicker = document.getElementById('datePicker');
+        const result = document.getElementById('result');
+        
+        function showDate() {
+            const dateValue = datePicker.value;
+            if (!dateValue) return;
+            
+            const date = new Date(dateValue + 'T00:00:00');
+            const formatted = date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            });
+            
+            result.textContent = `选择的日期：${formatted}`;
+        }
+        
+        datePicker.addEventListener('change', showDate);
+        window.onload = showDate;
+    </script>
+</body>
+</html>
